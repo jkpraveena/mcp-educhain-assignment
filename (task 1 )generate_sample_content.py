@@ -8,9 +8,9 @@ client = Educhain()
 topic = "Python Programming Basics"
 
 # Generate MCQs
-mcq = client.qna_engine.generate_questions(
+mcqs = client.qna_engine.generate_questions(
     topic=topic,
-    num=3,
+    num=5,
     question_type="Multiple Choice"
 )
 
@@ -19,14 +19,32 @@ lesson = client.content_engine.generate_lesson_plan(
     topic=topic
 )
 
+# Simulate Flashcards using Short Answer type
+short_answers = client.qna_engine.generate_questions(
+    topic=topic,
+    num=5,
+    question_type="Short Answer"
+)
+
+# Format flashcards
+flashcards = [
+    {
+        "question": q.question,
+        "answer": q.answer
+    }
+    for q in short_answers.questions
+]
+
 # Combine and save the result in JSON format
 output = {
     "topic": topic,
     "lesson_plan": lesson.model_dump(),  # dictionary format
-    "multiple_choice_questions": mcq.model_dump()
+    "multiple_choice_questions": mcqs.model_dump(),
+    "flashcards": flashcards
 }
 
-with open("content.json", "w") as f:
+# Save to JSON
+with open("sample_responses.txt", "w") as f:
     json.dump(output, f, indent=2)
 
-print("✅ Content generated and saved to content.json")
+print("✅ Content generated and saved to responses/sample_responses.json")
