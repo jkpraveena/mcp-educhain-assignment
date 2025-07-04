@@ -1,3 +1,6 @@
+# TASK 2 FROM THE GIVEN ASSIGNMENT
+
+
 # mcp_server.py
 
 from mcp.server.fastmcp import FastMCP
