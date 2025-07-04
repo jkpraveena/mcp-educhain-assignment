@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "educhain": {
+      "command": "/Users/praveenajk/EC/.ec/bin/python3",
+      "args": [
+        "/Users/praveenajk/EC/mcp_server.py"
+      ]
+    }
+  }
+}
